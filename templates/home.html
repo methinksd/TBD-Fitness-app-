@@ -1,0 +1,7 @@
+<!-- home.html -->
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Welcome to FitTrack</h1>
+    <p>Track your fitness journey effectively.</p>
+    <a href="{% url 'log_workout' %}"><button>Log a Workout</button></a>
+{% endblock %}

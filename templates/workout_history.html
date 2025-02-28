@@ -1,0 +1,12 @@
+<!-- workout_history.html -->
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Workout History</h2>
+    <ul>
+        {% for workout in workouts %}
+            <li>{{ workout.date }} - {{ workout.exercise }} - {{ workout.reps }} reps</li>
+        {% empty %}
+            <li>No workouts logged yet.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
