@@ -1,12 +1,55 @@
-<!-- workout_history.html -->
 {% extends 'base.html' %}
 {% block content %}
+<div class="history-container">
     <h2>Workout History</h2>
-    <ul>
+
+    <div class="filter-bar">
+        <button class="filter-btn active">All</button>
+        <button class="filter-btn">Last Week</button>
+        <button class="filter-btn">Last Month</button>
+    </div>
+
+    <div class="workout-list">
         {% for workout in workouts %}
-            <li>{{ workout.date }} - {{ workout.exercise }} - {{ workout.reps }} reps</li>
+        <div class="workout-card">
+            <div class="workout-card-header">
+                <div class="workout-date">
+                    <span class="day">{{ workout.date|date:"d" }}</span>
+                    <span class="month">{{ workout.date|date:"M" }}</span>
+                </div>
+                <div class="workout-info">
+                    <h3>{{ workout.name|default:"Workout" }}</h3>
+                    <p class="workout-meta">
+                        <span><i class="fas fa-dumbbell"></i> {{ workout.exercise_count|default:"1" }} exercises</span>
+                        <span><i class="fas fa-clock"></i> {{ workout.duration|default:"30 min" }}</span>
+                    </p>
+                </div>
+                <div class="workout-actions">
+                    <button class="view-details-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <div class="workout-summary">
+                {% for exercise in workout.exercises|slice:":3" %}
+                <div class="exercise-summary">
+                    <span class="exercise-name">{{ exercise.name|default:"Exercise" }}</span>
+                    <span class="exercise-stats">{{ exercise.sets|default:"3" }} sets, {{ exercise.reps|default:"10" }} reps</span>
+                </div>
+                {% empty %}
+                <div class="exercise-summary">
+                    <span class="exercise-name">{{ workout.exercise }}</span>
+                    <span class="exercise-stats">{{ workout.reps }} reps</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
         {% empty %}
-            <li>No workouts logged yet.</li>
+        <div class="empty-state">
+            <i class="fas fa-dumbbell empty-icon"></i>
+            <p>No workouts logged yet</p>
+            <a href="{% url 'log_workout' %}" class="start-workout-btn">Start Your First Workout</a>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
+</div>
 {% endblock %}

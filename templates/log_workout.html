@@ -1,11 +1,68 @@
-<!-- log_workout.html -->
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Log Workout</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save Workout</button>
-    </form>
-    <a href="{% url 'workout_history' %}">View Workout History</a>
+<div class="workout-container">
+    <div class="workout-header">
+        <h2>New Workout</h2>
+        <div class="workout-timer">
+            <i class="fas fa-clock"></i>
+            <span id="workout-timer">00:00:00</span>
+        </div>
+    </div>
+
+    <div class="exercise-list">
+        <div class="exercise-item">
+            <div class="exercise-details">
+                <h3>Barbell Bench Press</h3>
+                <button class="add-set-btn">Add Set</button>
+            </div>
+            <div class="sets-container">
+                <div class="set-header">
+                    <span class="set-label">SET</span>
+                    <span class="weight-label">WEIGHT (KG)</span>
+                    <span class="reps-label">REPS</span>
+                </div>
+                <div class="set-row">
+                    <span class="set-number">1</span>
+                    <input type="number" class="weight-input" placeholder="0">
+                    <input type="number" class="reps-input" placeholder="0">
+                    <button class="set-done"><i class="fas fa-check"></i></button>
+                </div>
+                <div class="set-row">
+                    <span class="set-number">2</span>
+                    <input type="number" class="weight-input" placeholder="0">
+                    <input type="number" class="reps-input" placeholder="0">
+                    <button class="set-done"><i class="fas fa-check"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <div class="exercise-details">
+                <h3>Pull-ups</h3>
+                <button class="add-set-btn">Add Set</button>
+            </div>
+            <div class="sets-container">
+                <div class="set-header">
+                    <span class="set-label">SET</span>
+                    <span class="weight-label">WEIGHT (KG)</span>
+                    <span class="reps-label">REPS</span>
+                </div>
+                <div class="set-row">
+                    <span class="set-number">1</span>
+                    <input type="number" class="weight-input" placeholder="0">
+                    <input type="number" class="reps-input" placeholder="0">
+                    <button class="set-done"><i class="fas fa-check"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <button class="add-exercise-btn">
+            <i class="fas fa-plus"></i> Add Exercise
+        </button>
+    </div>
+
+    <div class="workout-actions">
+        <button class="save-workout-btn">Finish Workout</button>
+    </div>
+</div>
 {% endblock %}

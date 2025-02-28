@@ -1,7 +1,58 @@
-<!-- home.html -->
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Welcome to FitTrack</h1>
-    <p>Track your fitness journey effectively.</p>
-    <a href="{% url 'log_workout' %}"><button>Log a Workout</button></a>
+<div class="dashboard">
+    <section class="welcome-section">
+        <h1>Welcome, {{ user.username }}</h1>
+        <p class="last-workout">
+            {% if last_workout %}
+                Last workout: {{ last_workout.date }} - {{ last_workout.exercise }}
+            {% else %}
+                No workouts logged yet
+            {% endif %}
+        </p>
+    </section>
+    
+    <section class="workout-routines">
+        <h2>Your Routines</h2>
+        <div class="routines-list">
+            <div class="routine-card">
+                <h3>Full Body</h3>
+                <p>8 exercises</p>
+                <button class="start-button">Start</button>
+            </div>
+            <div class="routine-card">
+                <h3>Upper Body</h3>
+                <p>6 exercises</p>
+                <button class="start-button">Start</button>
+            </div>
+            <div class="routine-card">
+                <h3>Lower Body</h3>
+                <p>5 exercises</p>
+                <button class="start-button">Start</button>
+            </div>
+            <div class="routine-card add-routine">
+                <i class="fas fa-plus"></i>
+                <p>Create Routine</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="quick-stats">
+        <h2>Quick Stats</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">12</span>
+                <span class="stat-label">Workouts this month</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">3</span>
+                <span class="stat-label">Personal Records</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">87%</span>
+                <span class="stat-label">Consistency</span>
+            </div>
+        </div>
+    </section>
+</div>
 {% endblock %}
